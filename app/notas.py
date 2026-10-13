@@ -32,3 +32,32 @@ def reporte_curso(alumnos):
         "mejor_alumno": mejor_alumno,
         "mejor_nota": mejor_nota,
     }
+
+def reporte_aprobados(alumnos):
+    total_inscriptos = 0
+    alumnos = [alumno for alumno in alumnos if esta_aprobado(alumno)]
+    cantidad = len(alumnos)
+    suma_notas = 0
+    nombres = []
+    materias = []
+    mejor_alumno = ""
+    mejor_nota = 0
+    for alumno in alumnos:
+        suma_notas += alumno["nota"]
+        nombres.append(alumno["nombre"])
+        if alumno["materia"] not in materias:
+            materias.append(alumno["materia"])
+        if alumno["nota"] > mejor_nota:
+            mejor_nota = alumno["nota"]
+            mejor_alumno = alumno["nombre"]
+    promedio = 0
+    if cantidad > 0:
+        promedio = round(suma_notas / cantidad, 1)
+    return {
+        "cantidad": cantidad,
+        "promedio": promedio,
+        "nombres": sorted(nombres),
+        "materias": materias,
+        "mejor_alumno": mejor_alumno,
+        "mejor_nota": mejor_nota,
+    }
