@@ -33,6 +33,7 @@ def reporte_curso(alumnos):
         "mejor_nota": mejor_nota,
     }
 
+
 def reporte_aprobados(alumnos):
     aprobados = [alumno for alumno in alumnos if esta_aprobado(alumno)]
     return reporte_curso(aprobados)
