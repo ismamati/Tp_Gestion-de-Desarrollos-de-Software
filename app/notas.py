@@ -36,4 +36,4 @@ def reporte_curso(alumnos):
 
 def reporte_aprobados(alumnos):
     aprobados = [alumno for alumno in alumnos if esta_aprobado(alumno)]
-    #return reporte_curso(aprobados)
+    return reporte_curso(aprobados)
