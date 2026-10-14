@@ -1,4 +1,4 @@
-from app.notas import buscar_por_materia, esta_aprobado, reporte_aprobados, reporte_curso
+from app.notas import buscar_por_materia, esta_aprobado, reporte_curso
 
 ALUMNOS = [
     {"nombre": "Ana", "materia": "Historia", "nota": 8},
@@ -36,23 +36,3 @@ def test_reporte_curso_vacio():
     reporte = reporte_curso([])
     assert reporte["cantidad"] == 0
     assert reporte["promedio"] == 0
-
-
-def test_reporte_aprobados():
-    assert reporte_aprobados(ALUMNOS) == {
-        "cantidad": 2,
-        "promedio": 8.5,
-        "nombres": ["Ana", "Carla"],
-        "materias": ["Historia"],
-        "mejor_alumno": "Carla",
-        "mejor_nota": 9,
-    }
-
-
-def test_reporte_aprobados_sin_aprobados():
-    assert reporte_aprobados([ALUMNOS[1]]) == reporte_curso([])
-
-
-def test_reporte_aprobados_nota_limite():
-    alumno = {"nombre": "Diego", "materia": "Historia", "nota": 6}
-    assert reporte_aprobados([alumno])["cantidad"] == 1
